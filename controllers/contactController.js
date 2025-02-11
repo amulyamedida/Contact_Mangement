@@ -1,21 +1,15 @@
 const Contact = require("../models/contactModel");
 const { validationResult } = require("express-validator");
 
-// @desc    Get all contacts
-// @route   GET /api/contacts
-// @access  Public
 const getContacts = async (req, res, next) => {
   try {
     const contacts = await Contact.find();
     res.status(200).json(contacts);
   } catch (error) {
-    next(error); // Pass error to middleware
+    next(error); 
   }
 };
 
-// @desc    Get a single contact by ID
-// @route   GET /api/contacts/:id
-// @access  Public
 const getContactById = async (req, res, next) => {
   try {
     const contact = await Contact.findById(req.params.id);
@@ -33,9 +27,7 @@ const getContactById = async (req, res, next) => {
   }
 };
 
-// @desc    Create a new contact
-// @route   POST /api/contacts
-// @access  Public
+
 const createContact = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -53,9 +45,7 @@ const createContact = async (req, res, next) => {
   }
 };
 
-// @desc    Update a contact
-// @route   PUT /api/contacts/:id
-// @access  Public
+
 const updateContact = async (req, res, next) => {
   try {
     const contact = await Contact.findById(req.params.id);
@@ -67,7 +57,7 @@ const updateContact = async (req, res, next) => {
     const updatedContact = await Contact.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true, runValidators: true } // Ensures data validation
+      { new: true, runValidators: true } 
     );
 
     res.status(200).json(updatedContact);
@@ -79,9 +69,7 @@ const updateContact = async (req, res, next) => {
   }
 };
 
-// @desc    Delete contact
-// @route   DELETE /api/contacts/:id
-// @access  Public
+
 const deleteContact = async (req, res, next) => {
   try {
     const contact = await Contact.findById(req.params.id);

@@ -1,5 +1,5 @@
 const request = require("supertest");
-const app = require("../index"); // Import the app
+const app = require("../index"); 
 const mongoose = require("mongoose");
 const Contact = require("../models/contactModel");
 
@@ -32,7 +32,7 @@ describe("Contacts API", () => {
     expect(response.status).toBe(201);
     expect(response.body).toHaveProperty("_id");
 
-    // Cleanup: Delete the contact after test
+    
     await Contact.findByIdAndDelete(response.body._id);
   });
 

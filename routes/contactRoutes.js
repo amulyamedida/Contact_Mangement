@@ -10,14 +10,14 @@ const {
 
 const router = express.Router();
 
-// Validation Rules
+
 const validateContact = [
   body("name").notEmpty().withMessage("Name is required"),
   body("email").isEmail().withMessage("Invalid email format"),
   body("phone").notEmpty().withMessage("Phone number is required"),
 ];
 
-// Routes
+
 router.get("/", getContacts);
 router.get("/:id", getContactById);
 router.post("/", validateContact, createContact);
